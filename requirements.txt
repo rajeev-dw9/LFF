@@ -10,3 +10,4 @@ torch==1.4.0
 torchvision==0.5.0
 tqdm==4.35.0
 Wand==0.5.8
+vkumar2408

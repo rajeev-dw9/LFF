@@ -47,8 +47,8 @@ def get_config():
 
 @ex.named_config
 def server_user():
-    log_dir = "/home/user/workspace/debias/log"
-    data_dir = "/home/user/datasets/debias"
+    log_dir = "/home/rajeev/rrd/LFF/log"
+    data_dir = "/home/rajeev/rrd/LFF/dataset"
 
 
 # Dataset Configuration
