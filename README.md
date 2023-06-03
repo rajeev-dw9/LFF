@@ -8,6 +8,9 @@ Official PyTorch implementation of ["Learning from Failure: Training Debiased Cl
 pip install -r requirements.txt
 ```
 
+conda deactivate
+source /home/rajeev/rrd/lff_env/bin/activate
+
 
 ## Make dataset
 ```

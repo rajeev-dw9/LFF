@@ -264,7 +264,7 @@ def train(
 
 #--------------------------------------------------------------------------------------------#
         # Calculate the orthonormal regularization loss between model_b and model_d
-        layer_names = ['feature.2.weight','feature.4.weight']
+        layer_names = ['feature.0.weight']
         ortho_loss = calculate_cosine_similarity_loss(model_d, model_b, layer_names)
         loss = loss_b_update.mean() + loss_d_update.mean() - (lambda_ortho / 2) * ortho_loss
 
@@ -347,11 +347,12 @@ def train(
     os.makedirs(os.path.join(log_dir, "result", main_tag), exist_ok=True)
 
 
-    result_file_name = f"result_cosine__neg__{lambda_ortho}__2.th"
-    model_file_name = f"model_cosine__neg__{lambda_ortho}__2.th"
+    result_file_name = f"result_cosine__neg__{lambda_ortho}__0.th"
+    model_file_name = f"model_cosine__neg__{lambda_ortho}__0.th"
 
     result_path = os.path.join(log_dir, "result", main_tag, result_file_name)
     model_path = os.path.join(log_dir, "result", main_tag, model_file_name)
+    
     valid_attrwise_accs_list = torch.stack(valid_attrwise_accs_list)
     with open(result_path, "wb") as f:
         torch.save({"valid/attrwise_accs": valid_attrwise_accs_list}, f)

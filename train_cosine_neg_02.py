@@ -34,8 +34,10 @@ torch.backends.cudnn.benchmark = False
 np.random.seed(random_seed)
 random.seed(random_seed)
 
-def calculate_ortho_loss(model_b, model_d, layer_names):
-    ortho_loss = 0.0
+
+
+def calculate_cosine_similarity_loss(model_b, model_d, layer_names):
+    cosine_loss = 0.0
     for name1, param1 in model_b.named_parameters():
         for layer_name in layer_names:
             if layer_name in name1:
@@ -44,34 +46,10 @@ def calculate_ortho_loss(model_b, model_d, layer_names):
                 if param1 is not None and param2 is not None and 'weight' in name1:
                     weight1 = param1.view(param1.size(0), -1)
                     weight2 = param2.view(param2.size(0), -1)
-                    orthonormal_loss = torch.norm(torch.mm(weight1.t(), weight1) - torch.mm(weight2.t(), weight2))
-                    ortho_loss += orthonormal_loss
-    return ortho_loss
+                    cosine_similarity = F.cosine_similarity(weight1, weight2)
+                    cosine_loss += 1 - cosine_similarity
+    return cosine_loss
 
-
-
-
-
-
-# def calculate_orthonormal_loss(model_b, model_d, layer_names):
-#     if not isinstance(model_b, torch.nn.Module) or not isinstance(model_d, torch.nn.Module):
-#         raise ValueError("model_b and model_d must be valid PyTorch models")
-#     if not layer_names:
-#         raise ValueError("layer_names must not be empty")
-#     ortho_loss = 0.0
-#     with torch.no_grad():
-#         for name1, param1 in model_b.named_parameters():
-#             for layer_name in layer_names:
-#                 if layer_name in name1:
-#                     name2 = name1.replace(layer_name, layer_name.replace('features', 'classifier'))
-#                     param2 = model_d.state_dict()[name2]
-#                     if param1 is not None and param2 is not None and 'weight' in name1:
-#                         weight1 = param1.view(param1.size(0), -1)
-#                         weight2 = param2.view(param2.size(0), -1)
-#                         orthonormal_loss = torch.norm(torch.mm(weight1.t(), weight1) - torch.mm(weight2.t(), weight2))
-#                         ortho_loss += orthonormal_loss
-
-#     return ortho_loss
 
 
 
@@ -286,15 +264,19 @@ def train(
 
 #--------------------------------------------------------------------------------------------#
         # Calculate the orthonormal regularization loss between model_b and model_d
-        layer_names = ['feature.2.weight','feature.4.weight']
-        ortho_loss = calculate_ortho_loss(model_d, model_b, layer_names)
-        loss = loss_b_update.mean() + loss_d_update.mean() + (lambda_ortho / 2) * ortho_loss
+        layer_names = ['feature.0.weight','feature.2.weight']
+        ortho_loss = calculate_cosine_similarity_loss(model_d, model_b, layer_names)
+        loss = loss_b_update.mean() + loss_d_update.mean() - (lambda_ortho / 2) * ortho_loss
+
+
 #--------------------------------------------------------------------------------------------#
 
+        
         num_updated += loss_weight.mean().item() * data.size(0)
 
         optimizer_b.zero_grad()
         optimizer_d.zero_grad()
+        loss = loss.mean()
         loss.backward()
         optimizer_b.step()
         optimizer_d.step()
@@ -364,12 +346,13 @@ def train(
 
     os.makedirs(os.path.join(log_dir, "result", main_tag), exist_ok=True)
 
-    result_file_name = f"result_ortho__{lambda_ortho}__4.th"
-    model_file_name = f"model_ortho__{lambda_ortho}__4.th"
+
+    result_file_name = f"result_cosine__neg__{lambda_ortho}__02.th"
+    model_file_name = f"model_cosine__neg__{lambda_ortho}__02.th"
 
     result_path = os.path.join(log_dir, "result", main_tag, result_file_name)
     model_path = os.path.join(log_dir, "result", main_tag, model_file_name)
-
+    
     valid_attrwise_accs_list = torch.stack(valid_attrwise_accs_list)
     with open(result_path, "wb") as f:
         torch.save({"valid/attrwise_accs": valid_attrwise_accs_list}, f)

@@ -1,0 +1,154 @@
+conda deactivate
+source /home/rajeev/rrd/lff_env/bin/activate
+
+wfe
+
+Resnet20
+
+layer name: fc.weight
+layer name: fc.bias
+layer name: conv1.weight
+layer name: bn1.weight
+layer name: bn1.bias
+layer name: layer1.0.conv1.weight
+layer name: layer1.0.bn1.weight
+layer name: layer1.0.bn1.bias
+layer name: layer1.0.conv2.weight
+layer name: layer1.0.bn2.weight
+layer name: layer1.0.bn2.bias
+layer name: layer1.1.conv1.weight
+layer name: layer1.1.bn1.weight
+layer name: layer1.1.bn1.bias
+layer name: layer1.1.conv2.weight
+layer name: layer1.1.bn2.weight
+layer name: layer1.1.bn2.bias
+layer name: layer2.0.conv1.weight
+layer name: layer2.0.bn1.weight
+layer name: layer2.0.bn1.bias
+layer name: layer2.0.conv2.weight
+layer name: layer2.0.bn2.weight
+layer name: layer2.0.bn2.bias
+layer name: layer2.0.downsample.0.weight
+layer name: layer2.0.downsample.1.weight
+layer name: layer2.0.downsample.1.bias
+layer name: layer2.1.conv1.weight
+layer name: layer2.1.bn1.weight
+layer name: layer2.1.bn1.bias
+layer name: layer2.1.conv2.weight
+layer name: layer2.1.bn2.weight
+layer name: layer2.1.bn2.bias
+layer name: layer3.0.conv1.weight
+layer name: layer3.0.bn1.weight
+layer name: layer3.0.bn1.bias
+layer name: layer3.0.conv2.weight
+layer name: layer3.0.bn2.weight
+layer name: layer3.0.bn2.bias
+layer name: layer3.0.downsample.0.weight
+layer name: layer3.0.downsample.1.weight
+layer name: layer3.0.downsample.1.bias
+layer name: layer3.1.conv1.weight
+layer name: layer3.1.bn1.weight
+layer name: layer3.1.bn1.bias
+layer name: layer3.1.conv2.weight
+layer name: layer3.1.bn2.weight
+layer name: layer3.1.bn2.bias
+layer name: layer4.0.conv1.weight
+layer name: layer4.0.bn1.weight
+layer name: layer4.0.bn1.bias
+layer name: layer4.0.conv2.weight
+layer name: layer4.0.bn2.weight
+layer name: layer4.0.bn2.bias
+layer name: layer4.0.downsample.0.weight
+layer name: layer4.0.downsample.1.weight
+layer name: layer4.0.downsample.1.bias
+layer name: layer4.1.conv1.weight
+layer name: layer4.1.bn1.weight
+layer name: layer4.1.bn1.bias
+layer name: layer4.1.conv2.weight
+layer name: layer4.1.bn2.weight
+layer name: layer4.1.bn2.bias
+
+
+param size: torch.Size([64, 3, 7, 7])
+param size: torch.Size([64])
+param size: torch.Size([64])
+param size: torch.Size([64, 64, 3, 3])
+param size: torch.Size([64])
+param size: torch.Size([64])
+param size: torch.Size([64, 64, 3, 3])
+param size: torch.Size([64])
+param size: torch.Size([64])
+param size: torch.Size([64, 64, 3, 3])
+param size: torch.Size([64])
+param size: torch.Size([64])
+param size: torch.Size([64, 64, 3, 3])
+param size: torch.Size([64])
+param size: torch.Size([64])
+param size: torch.Size([128, 64, 3, 3])
+param size: torch.Size([128])
+param size: torch.Size([128])
+param size: torch.Size([128, 128, 3, 3])
+param size: torch.Size([128])
+param size: torch.Size([128])
+param size: torch.Size([128, 64, 1, 1])
+param size: torch.Size([128])
+param size: torch.Size([128])
+param size: torch.Size([128, 128, 3, 3])
+param size: torch.Size([128])
+param size: torch.Size([128])
+param size: torch.Size([128, 128, 3, 3])
+param size: torch.Size([128])
+param size: torch.Size([128])
+param size: torch.Size([256, 128, 3, 3])
+param size: torch.Size([256])
+param size: torch.Size([256])
+param size: torch.Size([256, 256, 3, 3])
+param size: torch.Size([256])
+param size: torch.Size([256])
+param size: torch.Size([256, 128, 1, 1])
+param size: torch.Size([256])
+param size: torch.Size([256])
+param size: torch.Size([256, 256, 3, 3])
+param size: torch.Size([256])
+param size: torch.Size([256])
+param size: torch.Size([256, 256, 3, 3])
+param size: torch.Size([256])
+param size: torch.Size([256])
+param size: torch.Size([512, 256, 3, 3])
+param size: torch.Size([512])
+param size: torch.Size([512])
+param size: torch.Size([512, 512, 3, 3])
+param size: torch.Size([512])
+param size: torch.Size([512])
+param size: torch.Size([512, 256, 1, 1])
+param size: torch.Size([512])
+param size: torch.Size([512])
+param size: torch.Size([512, 512, 3, 3])
+param size: torch.Size([512])
+param size: torch.Size([512])
+param size: torch.Size([512, 512, 3, 3])
+param size: torch.Size([512])
+param size: torch.Size([512])
+param size: torch.Size([10, 512])
+param size: torch.Size([10])
+
+
+
+# MLP
+layer name: feature.0.weight
+layer name: feature.0.bias
+layer name: feature.2.weight
+layer name: feature.2.bias
+layer name: feature.4.weight
+layer name: feature.4.bias
+layer name: classifier.weight
+layer name: classifier.bias
+
+param size: torch.Size([100, 2352])
+param size: torch.Size([100])
+param size: torch.Size([100, 100])
+param size: torch.Size([100])
+param size: torch.Size([100, 100])
+param size: torch.Size([100])
+param size: torch.Size([10, 100])
+param size: torch.Size([10])

@@ -10,7 +10,7 @@ from tqdm import tqdm
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 data_dir = "/home/rajeev/rrd/LFF/dataset"
 colored_mnist = "ColoredMNIST-Skewed0.01-Severity4"
-model_path = "/home/rajeev/rrd/LFF/log/colored_mnist/result/ColoredMNIST-Skewed0.01-Severity4/model_cosine__2__.th"
+model_path = "/home/rajeev/rrd/LFF/log/colored_mnist/result/ColoredMNIST-Skewed0.01-Severity4/model_ortho__2__4.th"
 
 
 valid_dataset = get_dataset(
