@@ -47,7 +47,8 @@ def get_config():
 
 @ex.named_config
 def server_user():
-    log_dir = "/home/rajeev/rrd/LFF/log"
+    # log_dir = "/home/rajeev/rrd/LFF/log"
+    log_dir = "/home/rajeev/rrd/LFF/log_cifar"
     data_dir = "/home/rajeev/rrd/LFF/dataset"
 
 
