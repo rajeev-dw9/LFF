@@ -2,3 +2,5 @@ dataset
 log
 extra_files
 log_cifar
+log_layer
+log_test

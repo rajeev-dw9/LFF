@@ -21,7 +21,7 @@ from config import ex
 from data.util import get_dataset, IdxDataset, ZippedDataset
 from module.loss import GeneralizedCELoss
 from module.util import get_model
-from util import MultiDimAverageMeter, EMA
+from util_old import MultiDimAverageMeter, EMA
 
 import random
 seed =22

@@ -3,6 +3,28 @@ source /home/rajeev/rrd/lff_env/bin/activate
 
 wfe
 
+python3 train_CIFAR_Resnet_1.py with server_user corrupted_cifar10 type1 skewed3 severity4 lambda_ortho=0.01
+
+
+
+import sys
+def calculate_cos_sim(model_b, model_d, layer_names):
+    p11 = list(model_b.parameters())
+    print(f'p11: {p11[2]}')
+    p22 = list(model_d.parameters())
+    cos_sim = 0.0
+    for i in layer_names:
+            p111 = p11[i].view(p11[i].size(0), -1)
+            p222 = p22[i].view(p22[i].size(0), -1)
+            sim = F.cosine_similarity(p111, p222)
+            cos_sim += sim.mean(0)
+    return cos_sim
+
+
+
+
+
+
 Resnet20
 
 layer name: fc.weight
@@ -96,10 +118,12 @@ layer name: layer4.1.conv2.weight
 
 
 
-
-
-
-
+#-------------------------------------------------------#
+Resnet_1: layer1.1.conv2.weight layer2.1.conv2.weight
+Resnet_2: layer2.1.conv2.weight layer3.1.conv2.weight
+Resnet_3: layer3.1.conv2.weight layer4.1.conv2.weight
+Resnet_4: layer4.1.conv2.weight layer1.1.conv2.weight
+#-------------------------------------------------------#
 
 
 

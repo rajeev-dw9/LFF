@@ -45,7 +45,9 @@ def calculate_cosine_similarity_loss(model_b, model_d, layer_names):
                 param2 = model_d.state_dict()[name2]
                 if param1 is not None and param2 is not None and 'weight' in name1:
                     weight1 = param1.view(param1.size(0), -1)
+                    print(weight1.shape)
                     weight2 = param2.view(param2.size(0), -1)
+                    print(weight2.shape)
                     cosine_similarity = F.cosine_similarity(weight1, weight2)
                     cosine_loss += 1 - cosine_similarity
     return cosine_loss
@@ -69,7 +71,7 @@ def train(
     main_optimizer_tag,
     main_learning_rate,
     main_weight_decay,
-    lambda_ortho,
+    lambda_ortho=0.001,
 ):
 
     print(dataset_tag)
@@ -264,7 +266,8 @@ def train(
 
 #--------------------------------------------------------------------------------------------#
         # Calculate the orthonormal regularization loss between model_b and model_d
-        layer_names = ['feature.0.weight','feature.2.weight']
+        # layer_names = ['conv1.weight']
+        layer_names = ["layer1.1.conv2.weight","layer2.1.conv2.weight", "layer3.1.conv2.weight", "layer4.1.conv2.weight"]
         ortho_loss = calculate_cosine_similarity_loss(model_d, model_b, layer_names)
         loss = loss_b_update.mean() + loss_d_update.mean() + (lambda_ortho / 2) * ortho_loss
 
@@ -347,8 +350,8 @@ def train(
     os.makedirs(os.path.join(log_dir, "result", main_tag), exist_ok=True)
 
 
-    result_file_name = f"result_cosine__{lambda_ortho}__02.th"
-    model_file_name = f"model_cosine__{lambda_ortho}__02.th"
+    result_file_name = f"cifar_result_cosine__{lambda_ortho}__L11_21_31_41_C2.th"
+    model_file_name = f"cifar_model_cosine__{lambda_ortho}__L11_21_31_41_C2.th"
 
     result_path = os.path.join(log_dir, "result", main_tag, result_file_name)
     model_path = os.path.join(log_dir, "result", main_tag, model_file_name)

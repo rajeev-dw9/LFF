@@ -11,8 +11,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 data_dir = "/home/rajeev/rrd/LFF/dataset"
 # colored_mnist = "ColoredMNIST-Skewed0.01-Severity4"
 corrupted_cifar = "CorruptedCIFAR10-Type1-Skewed0.01-Severity4"
-model_path = "/home/rajeev/rrd/LFF/log_cifar/corrupted_cifar/result/CorruptedCIFAR10-Type1-Skewed0.01-Severity4/cifar_model_cosine__0.001__L41C2.th"
-
+model_path = "/home/rajeev/rrd/LFF/log_layer/corrupted_cifar/result/CorruptedCIFAR10-Type1-Skewed0.01-Severity4/mnist_model_cosine__0.002__pl2nl4___Resnet.th"
 
 valid_dataset = get_dataset(
     # colored_mnist,
