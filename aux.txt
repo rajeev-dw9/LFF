@@ -224,3 +224,39 @@ param size: torch.Size([100, 100])
 param size: torch.Size([100])
 param size: torch.Size([10, 100])
 param size: torch.Size([10])
+
+
+
+
+
+
+
+## Working Code of Cosine 
+#-------------------------------------------------------#
+#-------------------------------------------------------#
+def calculate_cosine_similarity_loss(model_b, model_d, layer_names):
+    cosine_loss = 0.0
+    for name1, param1 in model_b.named_parameters():
+        for layer_name in layer_names:
+            if layer_name in name1:
+                name2 = name1.replace(layer_name, layer_name.replace('features', 'classifier'))
+                param2 = model_d.state_dict()[name2]
+                if param1 is not None and param2 is not None and 'weight' in name1:
+                    weight1 = param1.view(param1.size(0), -1)
+                    weight2 = param2.view(param2.size(0), -1)
+                    cosine_similarity = F.cosine_similarity(weight1, weight2)
+                    cosine_loss += 1 - cosine_similarity
+                    print(f'cosine_loss: {cosine_loss}')
+    return cosine_loss
+#-------------------------------------------------------#
+#-------------------------------------------------------#
+
+
+
+
+
+
+
+
+
+Typ: 1 
