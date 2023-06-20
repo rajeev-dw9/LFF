@@ -28,7 +28,10 @@ class MultiDimAverageMeter(object):
     def reset(self):
         self.cum.zero_()
         self.cnt.zero_()
+        
+# MultiDimAverageMeter is a class that is used to calculate the average of a multi-dimensional tensor. It has a method called add that takes two arguments: vals and idxs. vals is a tensor of values that need to be added to the average, and idxs is a tensor of indices that specify the location of the values in the multi-dimensional tensor.
 
+#The get_mean method returns the average of the tensor, and the reset method resets the cum and cnt tensors to zero.
         
 class EMA:
     

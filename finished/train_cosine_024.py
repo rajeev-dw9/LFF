@@ -280,7 +280,10 @@ def train(
         loss.backward()
         optimizer_b.step()
         optimizer_d.step()
-        
+
+
+
+
         main_log_freq = 10
         if step % main_log_freq == 0:
         

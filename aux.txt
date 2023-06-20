@@ -250,8 +250,3 @@ def calculate_cosine_similarity_loss(model_b, model_d, layer_names):
     return cosine_loss
 #-------------------------------------------------------#
 #-------------------------------------------------------#
-
-
-
-
-

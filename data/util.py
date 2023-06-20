@@ -110,7 +110,8 @@ def get_dataset(dataset_tag, data_dir, dataset_split, transform_split):
     dataset_category = dataset_tag.split("-")[0]
     root = os.path.join(data_dir, dataset_tag)
     transform = transforms[dataset_category][transform_split]
-    dataset_split = "valid" if (dataset_split == "eval") else dataset_split
+    # dataset_split = "valid" if (dataset_split == "eval") else dataset_split
+    dataset_split = "test" if (dataset_split == "eval") else dataset_split
     if dataset_tag == "CelebA":
         celeba_root = '/home/xxxx/datasets/CelebA'
         dataset = CelebA(

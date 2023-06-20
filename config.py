@@ -47,9 +47,9 @@ def get_config():
 
 @ex.named_config
 def server_user():
-    # log_dir = "/home/rajeev/rrd/LFF/log"
-    log_dir = "/home/rajeev/rrd/LFF/LOGS/log_new_10June"
-    data_dir = "/home/rajeev/rrd/LFF/dataset"
+    log_dir = "/home/rajeev/rrd/LFF/LOGS/lof_CIFAR_20June_Features_KL"
+    # data_dir = "/home/rajeev/rrd/LFF/dataset"
+    data_dir = "/home/rajeev/rrd/LFF/DATA"
 
 
 # Dataset Configuration
@@ -70,7 +70,8 @@ def colored_mnist(log_dir):
 @ex.named_config
 def corrupted_cifar10(log_dir):
     dataset_tag = "CorruptedCIFAR10"
-    model_tag = 'ResNet20'
+    model_tag = 'ResNet18'
+    # model_tag = 'ResNet20'
     target_attr_idx = 0
     bias_attr_idx = 1
     main_num_steps = 196 * 200
